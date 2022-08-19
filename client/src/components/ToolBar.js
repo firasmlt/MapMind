@@ -6,7 +6,10 @@ import Trash from "../images/Trash_duotone_line.svg";
 function ToolBar() {
   return (
     <div className={styles.toolbar}>
-      <input type="text" />
+      <input
+        type="text"
+        placeholder="Context: ex. I am making a course called how to learn how to skydive."
+      />
       <div className={styles.tools}>
         <img src={Chart} width="38px" />
         <img src={Circle} width="38px" />

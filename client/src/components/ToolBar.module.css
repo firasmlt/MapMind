@@ -2,7 +2,7 @@
   height: 72px;
   display: flex;
   border-bottom: 1px solid #c1c1c1;
-  margin: 0 30px;
+  margin: 10px 30px;
   align-items: flex-end;
   justify-content: space-between;
 }
@@ -14,6 +14,12 @@
   width: 100%;
   outline: none;
   border: none;
+  background-color: inherit;
+}
+
+.toolbar > input::placeholder {
+  color: #c1c1c1;
+  opacity: 1;
 }
 
 .tools {
