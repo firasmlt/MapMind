@@ -1,8 +1,33 @@
 import styles from "./MagicWand.module.css";
+import { Configuration, OpenAIApi } from "openai";
 
-function MagicWand() {
+const complete = async () => {
+  try {
+    const configuration = new Configuration({
+      apiKey: "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",
+    });
+    const openai = new OpenAIApi(configuration);
+    const completion = await openai.createCompletion({
+      model: "text-davinci-002",
+      prompt: `Suggest a name for an animal
+
+      Animal: dog
+      Name:`,
+    });
+    console.log(completion.data[0].text);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+function MagicWand({ isValid }) {
+  const onClickHandler = (e) => {
+    if (!isValid) return;
+    complete();
+  };
   return (
     <svg
+      onClick={onClickHandler}
       className={styles.magicwand}
       enable-background="new 0 0 48 48"
       height="30px"
