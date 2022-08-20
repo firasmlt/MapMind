@@ -1,12 +1,38 @@
 import { useEffect, useState } from "react";
 import styles from "./Content.module.css";
 import { Configuration, OpenAIApi } from "openai";
-
+import Chapter from "./Chapter";
 function Content() {
-  const [content, setContent] = useState(`# Head
-  ## sub head
-  ### sub sub head
-  `);
+  const [content, setContent] = useState([
+    {
+      id: 0,
+      name: "how to learn to skydive",
+      topics: [
+        {
+          name: "topic 1: what is skydiving?",
+          subtopics: ["subtopic 1: history of skydiving", "subtopic two"],
+        },
+        {
+          name: "topic 2: what is skydiving?",
+          subtopics: ["subtopic 1: history of skydiving", "subtopic two"],
+        },
+      ],
+    },
+    {
+      id: 1,
+      name: "how to learn to test",
+      topics: [
+        {
+          name: "topic 1: what is testing?",
+          subtopics: ["subtopic 1: history of test", "subt topic two"],
+        },
+        {
+          name: "topic 2: what is test?",
+          subtopics: ["subtopic 1: history of test", "subt topic two"],
+        },
+      ],
+    },
+  ]);
   const promptContent = `we are creating a branching structure with multiple dimensions in the markdown format.
     # represents the first and high-level dimension
     ## represents a breakdown more detailed dimension of #
@@ -32,10 +58,10 @@ function Content() {
     });
     console.log(response.data.choices[0].text.replace(/#/g, "-"));
   };
-  useEffect(() => {
-    getData();
-  });
-  return <h1>{content}</h1>;
+  // useEffect(() => {
+  //   getData();
+  // });
+  return content.map((ch) => <Chapter chapter={ch} key={ch.id} />);
 }
 
 export default Content;
