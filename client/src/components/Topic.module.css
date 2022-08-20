@@ -1,0 +1,14 @@
+.topic {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 60px;
+}
+.topicInput {
+  height: 43px;
+  border: 1px solid #4f4f4f;
+  border-radius: 12px;
+  outline: none;
+  width: 60vw;
+  padding: 0 10px;
+  font-weight: bold;
+}

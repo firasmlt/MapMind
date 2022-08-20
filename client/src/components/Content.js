@@ -30,6 +30,24 @@ function Content() {
           name: "topic 2: what is test?",
           subtopics: ["subtopic 1: history of test", "subt topic two"],
         },
+        {
+          name: "topic 1: what is testing?",
+          subtopics: ["subtopic 1: history of test", "subt topic two"],
+        },
+      ],
+    },
+    {
+      id: 2,
+      name: "how to learn to skydive",
+      topics: [
+        {
+          name: "topic 1: what is skydiving?",
+          subtopics: ["subtopic 1: history of skydiving", "subtopic two"],
+        },
+        {
+          name: "topic 2: what is skydiving?",
+          subtopics: ["subtopic 1: history of skydiving", "subtopic two"],
+        },
       ],
     },
   ]);
@@ -61,7 +79,13 @@ function Content() {
   // useEffect(() => {
   //   getData();
   // });
-  return content.map((ch) => <Chapter chapter={ch} key={ch.id} />);
+  return (
+    <div className={styles.content}>
+      {content.map((ch) => (
+        <Chapter chapter={ch} key={ch.id} />
+      ))}
+    </div>
+  );
 }
 
 export default Content;

@@ -1,10 +1,10 @@
 import Topic from "./Topic";
-
+import styles from "./Chapter.module.css";
 function Chapter({ chapter }) {
   console.log(chapter);
   return (
-    <div className="chapter">
-      <p>#{chapter.name}</p>
+    <div className={styles.chapter}>
+      <input type="text" value={chapter.name} className={styles.chapterInput} />
       {chapter.topics.map((topic, i) => {
         return <Topic topic={topic} key={i} />;
       })}

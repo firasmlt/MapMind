@@ -1,12 +1,12 @@
 import Subtopic from "./Subtopic";
-
-function Topic({ topic }) {
-  console.log(topic);
+import styles from "./Topic.module.css";
+function Topic({ topic, key }) {
+  console.log(topic, key);
   return (
-    <div className="topic">
-      <p>##{topic.name}</p>
+    <div className={styles.topic}>
+      <input type="text" value={topic.name} className={styles.topicInput} />
       {topic.subtopics.map((subtopic, i) => {
-        return <Subtopic subtopic={subtopic} key={i} />;
+        return true ? <Subtopic subtopic={subtopic} key={i} /> : <></>;
       })}
     </div>
   );
