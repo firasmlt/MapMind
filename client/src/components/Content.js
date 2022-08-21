@@ -3,45 +3,7 @@ import styles from "./Content.module.css";
 import { Configuration, OpenAIApi } from "openai";
 import Chapter from "./Chapter";
 function Content() {
-  const [content, setContent] = useState([
-    {
-      id: 0,
-      name: "how to learn to skydive",
-      topics: [],
-    },
-    {
-      id: 1,
-      name: "how to learn to test",
-      topics: [
-        {
-          name: "topic 1: what is testing?",
-          subtopics: ["subtopic 1: history of test", "subt topic two"],
-        },
-        {
-          name: "topic 2: what is test?",
-          subtopics: ["subtopic 1: history of test", "subt topic two"],
-        },
-        {
-          name: "topic 1: what is testing?",
-          subtopics: ["subtopic 1: history of test", "subt topic two"],
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: "how to learn to skydive",
-      topics: [
-        {
-          name: "topic 1: what is skydiving?",
-          subtopics: ["subtopic 1: history of skydiving", "subtopic two"],
-        },
-        {
-          name: "topic 2: what is skydiving?",
-          subtopics: [],
-        },
-      ],
-    },
-  ]);
+  const [content, setContent] = useState([]);
   const promptContent = `we are creating a branching structure with multiple dimensions in the markdown format.
     # represents the first and high-level dimension
     ## represents a breakdown more detailed dimension of #
@@ -86,13 +48,6 @@ function Content() {
       })
     );
   };
-  useEffect(
-    () =>
-      updateChapter(2, {
-        name: "fdask fjdsakjf dsakla fj sdalkj fsdalkfj sadljf ",
-      }),
-    []
-  );
   console.log(content);
 
   return (
@@ -102,9 +57,9 @@ function Content() {
           <Chapter
             chapter={ch}
             key={ch.id}
+            id={ch.id}
             addChapterInput={content.length === index + 1}
             addChapter={addChapter}
-            id={ch.id}
             updateChapter={updateChapter}
           />
         ))
