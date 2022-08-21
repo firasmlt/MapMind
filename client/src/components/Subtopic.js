@@ -1,15 +1,22 @@
 import styles from "./Subtopic.module.css";
 
-function Subtopic({ subtopic, lastIndex }) {
-  console.log(subtopic);
+function Subtopic({ subtopic, addSubtopicInput }) {
   return (
     <div className={styles.subtopic}>
-      <input type="text" value={subtopic} className={styles.subtopicInput} />
-      {lastIndex ? (
+      {subtopic !== null ? (
+        <input
+          type="text"
+          defaultValue={subtopic}
+          className={styles.subtopicInput}
+        />
+      ) : (
+        <></>
+      )}
+      {addSubtopicInput ? (
         <input
           type="text"
           placeholder="Add a new SubTopic"
-          className={styles.subtopicInput}
+          className={`${styles.subtopicInput} ${styles.addsubtopicInput}`}
         />
       ) : (
         <></>

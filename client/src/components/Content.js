@@ -37,7 +37,7 @@ function Content() {
         },
         {
           name: "topic 2: what is skydiving?",
-          subtopics: ["subtopic 1: history of skydiving", "subtopic two"],
+          subtopics: [],
         },
       ],
     },
@@ -70,15 +70,52 @@ function Content() {
   // useEffect(() => {
   //   getData();
   // });
+
+  // functions on chapters
+  const addChapter = (chapterObj) => {
+    chapterObj.id = content.length;
+
+    const newContent = [...content, chapterObj];
+    setContent(newContent);
+  };
+
+  const updateChapter = (id, newValue) => {
+    setContent((prev) =>
+      prev.map((item) => {
+        return item.id === id ? { ...item, ...newValue } : item;
+      })
+    );
+  };
+  useEffect(
+    () =>
+      updateChapter(2, {
+        name: "fdask fjdsakjf dsakla fj sdalkj fsdalkfj sadljf ",
+      }),
+    []
+  );
+  console.log(content);
+
   return (
     <div className={styles.content}>
-      {content.map((ch, index) => (
+      {content.length > 0 ? (
+        content.map((ch, index) => (
+          <Chapter
+            chapter={ch}
+            key={ch.id}
+            addChapterInput={content.length === index + 1}
+            addChapter={addChapter}
+            id={ch.id}
+            updateChapter={updateChapter}
+          />
+        ))
+      ) : (
         <Chapter
-          chapter={ch}
-          key={ch.id}
-          lastIndex={content.length === index + 1}
+          chapter={null}
+          addChapterInput={true}
+          addChapter={addChapter}
+          updateChapter={updateChapter}
         />
-      ))}
+      )}
     </div>
   );
 }
