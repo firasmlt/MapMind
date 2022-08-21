@@ -7,16 +7,7 @@ function Content() {
     {
       id: 0,
       name: "how to learn to skydive",
-      topics: [
-        {
-          name: "topic 1: what is skydiving?",
-          subtopics: ["subtopic 1: history of skydiving", "subtopic two"],
-        },
-        {
-          name: "topic 2: what is skydiving?",
-          subtopics: ["subtopic 1: history of skydiving", "subtopic two"],
-        },
-      ],
+      topics: [],
     },
     {
       id: 1,
@@ -81,8 +72,12 @@ function Content() {
   // });
   return (
     <div className={styles.content}>
-      {content.map((ch) => (
-        <Chapter chapter={ch} key={ch.id} />
+      {content.map((ch, index) => (
+        <Chapter
+          chapter={ch}
+          key={ch.id}
+          lastIndex={content.length === index + 1}
+        />
       ))}
     </div>
   );

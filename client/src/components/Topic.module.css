@@ -1,5 +1,4 @@
 .topic {
-  margin-top: 10px;
   margin-left: 60px;
 }
 .topicInput {
@@ -10,4 +9,5 @@
   width: 60vw;
   padding: 0 10px;
   font-weight: bold;
+  margin: 10px 0;
 }
