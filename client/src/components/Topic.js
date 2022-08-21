@@ -1,23 +1,49 @@
 import Subtopic from "./Subtopic";
+import arrow from "../images/arrow.svg";
+
 import styles from "./Topic.module.css";
 function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
   // console.log(topic);
+  const arrowClickHandler = () => {
+    if (!topic) {
+      return;
+    }
+    const newChapter = { ...chapter };
+    newChapter.topics[topicIndex].show = !newChapter.topics[topicIndex].show;
+    updateChapter(chapter.id, { ...newChapter });
+  };
   const topicChangeHandler = (e) => {
     const newChapter = { ...chapter };
     newChapter.topics[topicIndex] = {
+      ...newChapter.topics[topicIndex],
       name: e.target.value,
-      subtopics: newChapter.topics[topicIndex].subtopics,
     };
     updateChapter(chapter.id, { ...newChapter });
   };
   const addTopicHandler = (e) => {
     updateChapter(chapter.id, {
       ...chapter,
-      topics: [...chapter.topics, { name: e.target.value, subtopics: [] }],
+      topics: [
+        ...chapter.topics,
+        { name: e.target.value, subtopics: [], show: true },
+      ],
     });
   };
   return (
     <div className={styles.topic}>
+      {topic !== null ? (
+        <img
+          alt="arrow"
+          src={arrow}
+          className={
+            topic && topic.show === true ? styles.arrow_show : styles.arrow_hide
+          }
+          onClick={arrowClickHandler}
+          width="15px"
+        />
+      ) : (
+        <></>
+      )}
       {topic !== null ? (
         <input
           type="text"
@@ -28,7 +54,7 @@ function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
       ) : (
         <></>
       )}
-      {topic !== null && topic.subtopics.length > 0 ? (
+      {topic !== null && topic.subtopics.length > 0 && topic.show ? (
         topic.subtopics.map((subtopic, i) => {
           return true ? (
             <Subtopic
@@ -44,7 +70,7 @@ function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
             <></>
           );
         })
-      ) : topic === null || topic.name === "" ? (
+      ) : topic === null || topic.name === "" || !topic.show ? (
         <></>
       ) : (
         <Subtopic

@@ -14,3 +14,14 @@
 .addChapterInput {
   margin-top: 10px;
 }
+
+.arrow_hide {
+  margin-right: 5px;
+  cursor: pointer;
+  transform: rotate(-90deg);
+}
+
+.arrow_show {
+  margin-right: 5px;
+  cursor: pointer;
+}
