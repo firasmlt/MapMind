@@ -30,6 +30,7 @@ function Subtopic({
           defaultValue={subtopic}
           className={styles.subtopicInput}
           onChange={changeSubtopicHandler}
+          autoFocus
         />
       ) : (
         <></>

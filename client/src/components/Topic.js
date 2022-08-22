@@ -3,7 +3,6 @@ import arrow from "../images/arrow.svg";
 
 import styles from "./Topic.module.css";
 function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
-  // console.log(topic);
   const arrowClickHandler = () => {
     if (!topic) {
       return;
@@ -50,6 +49,8 @@ function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
           defaultValue={topic.name}
           className={styles.topicInput}
           onChange={topicChangeHandler}
+          onLoad={() => console.log("hello")}
+          autoFocus
         />
       ) : (
         <></>

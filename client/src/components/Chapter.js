@@ -39,6 +39,7 @@ function Chapter({ chapter, id, addChapterInput, addChapter, updateChapter }) {
       )}
       {chapter !== null ? (
         <input
+          autoFocus
           type="text"
           value={chapter.name}
           onChange={chapterNameChange}
@@ -50,7 +51,6 @@ function Chapter({ chapter, id, addChapterInput, addChapter, updateChapter }) {
       {chapter !== null &&
       chapter.topics &&
       chapter.topics.length > 0 &&
-      chapter.name !== "" &&
       chapter.show ? (
         chapter.topics.map((topic, i) => {
           return (
