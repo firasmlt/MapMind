@@ -34,8 +34,11 @@ function Content() {
   // });
 
   // functions on chapters
+  const ID = function () {
+    return "_" + Math.random().toString(36).substr(2, 9);
+  };
   const addChapter = (chapterObj) => {
-    chapterObj.id = content.length;
+    chapterObj.id = ID();
 
     const newContent = [...content, chapterObj];
     setContent(newContent);
@@ -47,6 +50,11 @@ function Content() {
         return item.id === id ? { ...item, ...newValue } : item;
       })
     );
+  };
+  const deleteChapter = (id) => {
+    setContent((prev) => {
+      return prev.filter((chapter) => chapter.id !== id);
+    });
   };
   console.log(content);
 
@@ -61,6 +69,7 @@ function Content() {
             addChapterInput={content.length === index + 1}
             addChapter={addChapter}
             updateChapter={updateChapter}
+            deleteChapter={deleteChapter}
           />
         ))
       ) : (
@@ -69,6 +78,7 @@ function Content() {
           addChapterInput={true}
           addChapter={addChapter}
           updateChapter={updateChapter}
+          deleteChapter={deleteChapter}
         />
       )}
     </div>

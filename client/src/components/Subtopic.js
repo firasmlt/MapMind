@@ -22,6 +22,13 @@ function Subtopic({
     newChapter.topics[topicIndex].subtopics[subtopicIndex] = e.target.value;
     updateChapter(chapter.id, newChapter);
   };
+  const deleteSubtopicHandler = (e) => {
+    const newChapter = { ...chapter };
+    newChapter.topics[topicIndex].subtopics = newChapter.topics[
+      topicIndex
+    ].subtopics.filter((el, i) => i !== subtopicIndex);
+    updateChapter(chapter.id, newChapter);
+  };
 
   return (
     <div className={styles.subtopic}>
@@ -29,12 +36,18 @@ function Subtopic({
         <>
           <input
             type="text"
-            defaultValue={subtopic}
+            value={subtopic}
             className={styles.subtopicInput}
             onChange={changeSubtopicHandler}
             autoFocus
           />
-          <img src={Trash} width="30px" className={styles.trash} />
+          <img
+            alt="trash_icon"
+            src={Trash}
+            width="30px"
+            className={styles.trash}
+            onClick={deleteSubtopicHandler}
+          />
         </>
       ) : (
         <></>

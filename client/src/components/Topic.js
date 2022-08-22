@@ -28,6 +28,12 @@ function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
       ],
     });
   };
+  const deleteTopicHandler = () => {
+    updateChapter(chapter.id, {
+      ...chapter,
+      topics: [...chapter.topics.filter((el, i) => i !== topicIndex)],
+    });
+  };
   return (
     <div className={styles.topic}>
       {topic !== null ? (
@@ -47,13 +53,19 @@ function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
         <>
           <input
             type="text"
-            defaultValue={topic.name}
+            value={topic.name}
             className={styles.topicInput}
             onChange={topicChangeHandler}
             onLoad={() => console.log("hello")}
             autoFocus
           />
-          <img src={Trash} width="33px" className={styles.trash} />
+          <img
+            alt="trash_icon"
+            src={Trash}
+            width="33px"
+            className={styles.trash}
+            onClick={deleteTopicHandler}
+          />
         </>
       ) : (
         <></>

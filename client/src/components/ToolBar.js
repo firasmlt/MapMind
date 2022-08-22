@@ -11,10 +11,20 @@ function ToolBar() {
         placeholder="Context: ex. I am making a course called how to learn how to skydive."
       />
       <div className={styles.tools}>
-        <img src={Chart} className={styles.chart} width="38px" />
-        <img src={Circle} width="38px" />
+        <img
+          alt="chart_icon"
+          src={Chart}
+          className={styles.chart}
+          width="38px"
+        />
+        <img alt="circle_icon" src={Circle} width="38px" />
         <input type="checkbox" />
-        <img src={Trash} width="38px" className={styles.trash} />
+        <img
+          alt="trash_icon"
+          src={Trash}
+          width="38px"
+          className={styles.trash}
+        />
       </div>
     </div>
   );

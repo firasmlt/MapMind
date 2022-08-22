@@ -3,7 +3,14 @@ import arrow from "../images/Arrow.svg";
 import Trash from "../images/Trash.svg";
 
 import styles from "./Chapter.module.css";
-function Chapter({ chapter, id, addChapterInput, addChapter, updateChapter }) {
+function Chapter({
+  chapter,
+  id,
+  addChapterInput,
+  addChapter,
+  updateChapter,
+  deleteChapter,
+}) {
   const addChapterHandler = (e) => {
     addChapter({
       name: e.target.value,
@@ -20,6 +27,9 @@ function Chapter({ chapter, id, addChapterInput, addChapter, updateChapter }) {
       return;
     }
     updateChapter(id, { show: !chapter.show });
+  };
+  const deleteChapterHandler = () => {
+    deleteChapter(chapter.id);
   };
   return (
     <div className={styles.chapter}>
@@ -47,7 +57,13 @@ function Chapter({ chapter, id, addChapterInput, addChapter, updateChapter }) {
             onChange={chapterNameChange}
             className={styles.chapterInput}
           />
-          <img src={Trash} width="38px" className={styles.trash} />
+          <img
+            alt="trash_icon"
+            src={Trash}
+            width="38px"
+            className={styles.trash}
+            onClick={deleteChapterHandler}
+          />
         </>
       ) : (
         <></>
