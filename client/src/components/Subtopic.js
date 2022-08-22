@@ -1,4 +1,5 @@
 import styles from "./Subtopic.module.css";
+import Trash from "../images/Trash.svg";
 
 function Subtopic({
   subtopic,
@@ -25,13 +26,16 @@ function Subtopic({
   return (
     <div className={styles.subtopic}>
       {subtopic !== null ? (
-        <input
-          type="text"
-          defaultValue={subtopic}
-          className={styles.subtopicInput}
-          onChange={changeSubtopicHandler}
-          autoFocus
-        />
+        <>
+          <input
+            type="text"
+            defaultValue={subtopic}
+            className={styles.subtopicInput}
+            onChange={changeSubtopicHandler}
+            autoFocus
+          />
+          <img src={Trash} width="30px" className={styles.trash} />
+        </>
       ) : (
         <></>
       )}

@@ -10,8 +10,16 @@
   padding: 0 10px;
   font-size: 14px;
   margin: 5px 0;
+  padding-right: 40px;
 }
 
 .addsubtopicInput {
   margin-top: 5px;
+}
+
+.trash {
+  position: relative;
+  top: 10px;
+  left: -38px;
+  cursor: pointer;
 }

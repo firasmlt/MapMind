@@ -1,6 +1,6 @@
 import Subtopic from "./Subtopic";
-import arrow from "../images/arrow.svg";
-
+import arrow from "../images/Arrow.svg";
+import Trash from "../images/Trash.svg";
 import styles from "./Topic.module.css";
 function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
   const arrowClickHandler = () => {
@@ -44,14 +44,17 @@ function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
         <></>
       )}
       {topic !== null ? (
-        <input
-          type="text"
-          defaultValue={topic.name}
-          className={styles.topicInput}
-          onChange={topicChangeHandler}
-          onLoad={() => console.log("hello")}
-          autoFocus
-        />
+        <>
+          <input
+            type="text"
+            defaultValue={topic.name}
+            className={styles.topicInput}
+            onChange={topicChangeHandler}
+            onLoad={() => console.log("hello")}
+            autoFocus
+          />
+          <img src={Trash} width="33px" className={styles.trash} />
+        </>
       ) : (
         <></>
       )}

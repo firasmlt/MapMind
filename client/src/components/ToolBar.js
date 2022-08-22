@@ -1,7 +1,7 @@
 import styles from "./ToolBar.module.css";
 import Chart from "../images/Chart.svg";
-import Circle from "../images/circle_left.svg";
-import Trash from "../images/Trash_duotone_line.svg";
+import Circle from "../images/Circle.svg";
+import Trash from "../images/Trash.svg";
 
 function ToolBar() {
   return (

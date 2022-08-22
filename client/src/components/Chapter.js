@@ -1,7 +1,8 @@
 import Topic from "./Topic";
-import arrow from "../images/arrow.svg";
+import arrow from "../images/Arrow.svg";
+import Trash from "../images/Trash.svg";
+
 import styles from "./Chapter.module.css";
-import { useState } from "react";
 function Chapter({ chapter, id, addChapterInput, addChapter, updateChapter }) {
   const addChapterHandler = (e) => {
     addChapter({
@@ -38,13 +39,16 @@ function Chapter({ chapter, id, addChapterInput, addChapter, updateChapter }) {
         <></>
       )}
       {chapter !== null ? (
-        <input
-          autoFocus
-          type="text"
-          value={chapter.name}
-          onChange={chapterNameChange}
-          className={styles.chapterInput}
-        />
+        <>
+          <input
+            autoFocus
+            type="text"
+            value={chapter.name}
+            onChange={chapterNameChange}
+            className={styles.chapterInput}
+          />
+          <img src={Trash} width="38px" className={styles.trash} />
+        </>
       ) : (
         <></>
       )}

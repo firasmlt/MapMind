@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./Content.module.css";
 import { Configuration, OpenAIApi } from "openai";
 import Chapter from "./Chapter";

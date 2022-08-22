@@ -8,6 +8,7 @@
   outline: none;
   width: 60vw;
   padding: 0 10px;
+  padding-right: 45px;
   font-size: 18px;
 }
 
@@ -23,5 +24,11 @@
 
 .arrow_show {
   margin-right: 5px;
+  cursor: pointer;
+}
+.trash {
+  position: relative;
+  top: 12px;
+  left: -45px;
   cursor: pointer;
 }
