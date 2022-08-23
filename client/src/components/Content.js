@@ -4,6 +4,39 @@ import styles from "./Content.module.css";
 import Chapter from "./Chapter";
 function Content() {
   const [content, setContent] = useState([]);
+
+  const convertContentToMarkdown = (contentArray) => {
+    if (contentArray === []) return "";
+    let contentMarkdown = "";
+    contentArray.forEach((chapter) => {
+      let chapterMarkdown = `#${chapter.name}`;
+      chapter.topics.forEach((topic) => {
+        chapterMarkdown += `\n##${topic.name}`;
+        topic.subtopics.forEach((subtopic) => {
+          chapterMarkdown += `\n###${subtopic}`;
+        });
+      });
+      contentMarkdown += `${chapterMarkdown}\n`;
+    });
+    return contentMarkdown;
+  };
+  const convertMarkdownToContent = (markdownText) => {};
+  const markdownExampleText = `#chapter1
+  ##topic1
+  ###subtopic1
+  ###subtopic2
+  ###subtopic3
+  ##topic2
+  ###subtopic1
+  ###subtopic2
+  #chapter2
+  ##topic1
+  ###subtopic1
+  ###subtopic2
+  ##topic2
+  ###subtopic1`;
+
+  console.log(convertMarkdownToContent(markdownExampleText));
   // const promptContent = `we are creating a branching structure with multiple dimensions in the markdown format.
   //   # represents the first and high-level dimension
   //   ## represents a breakdown more detailed dimension of #
