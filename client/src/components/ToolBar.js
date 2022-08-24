@@ -3,8 +3,10 @@ import Chart from "../images/Chart.svg";
 import Circle from "../images/Circle.svg";
 import Trash from "../images/Trash.svg";
 
-function ToolBar() {
-  const deleteAllHandler = () => {};
+function ToolBar({ deleteAllHandler }) {
+  const deleteAll = () => {
+    deleteAllHandler();
+  };
   return (
     <div className={styles.toolbar}>
       <input
@@ -25,7 +27,7 @@ function ToolBar() {
           src={Trash}
           width="38px"
           className={styles.trash}
-          onClick={deleteAllHandler}
+          onClick={deleteAll}
         />
       </div>
     </div>

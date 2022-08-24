@@ -3,14 +3,7 @@ import styles from "./Content.module.css";
 // import { Configuration, OpenAIApi } from "openai";
 import Chapter from "./Chapter";
 
-function Content() {
-  const [content, setContent] = useState([
-    {
-      id: "1",
-      name: "chapter1",
-      topics: [{ name: "topic1", subtopics: ["hello"] }],
-    },
-  ]);
+function Content({ content, setContent }) {
   const ID = function () {
     return "_" + Math.random().toString(36).substr(2, 9);
   };
