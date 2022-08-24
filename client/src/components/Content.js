@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Content.module.css";
 // import { Configuration, OpenAIApi } from "openai";
 import Chapter from "./Chapter";
+
 function Content() {
   const [content, setContent] = useState([]);
-
+  const ID = function () {
+    return "_" + Math.random().toString(36).substr(2, 9);
+  };
   const convertContentToMarkdown = (contentArray) => {
     if (contentArray === []) return "";
     let contentMarkdown = "";
@@ -20,7 +23,35 @@ function Content() {
     });
     return contentMarkdown;
   };
-  const convertMarkdownToContent = (markdownText) => {};
+
+  const convertMarkdownToContent = (markdownText) => {
+    const lines = markdownText.split("\n");
+    const newContent = [];
+    let chapter = {};
+    lines.forEach((l, i) => {
+      const line = l.trim();
+      if (!line.includes("###") && !line.includes("##") && line.includes("#")) {
+        chapter = {
+          id: ID(),
+          name: line.replace("#", ""),
+          topics: [],
+        };
+        newContent.push(chapter);
+      }
+      if (line.includes("##") && !line.includes("###")) {
+        chapter.topics.push({
+          name: line.replace("##", ""),
+          subtopics: [],
+        });
+      }
+      if (line.includes("###")) {
+        chapter.topics[chapter.topics.length - 1].subtopics.push(
+          line.replace("###", "")
+        );
+      }
+    });
+    return newContent;
+  };
   const markdownExampleText = `#chapter1
   ##topic1
   ###subtopic1
@@ -34,9 +65,14 @@ function Content() {
   ###subtopic1
   ###subtopic2
   ##topic2
-  ###subtopic1`;
+  ###subtopic1
+  fdsafdsafsda`;
 
+  useEffect(() => {
+    setContent(convertMarkdownToContent(markdownExampleText));
+  }, []);
   console.log(convertMarkdownToContent(markdownExampleText));
+  // console.log(convertContentToMarkdown(content));
   // const promptContent = `we are creating a branching structure with multiple dimensions in the markdown format.
   //   # represents the first and high-level dimension
   //   ## represents a breakdown more detailed dimension of #
@@ -67,9 +103,7 @@ function Content() {
   // });
 
   // functions on chapters
-  const ID = function () {
-    return "_" + Math.random().toString(36).substr(2, 9);
-  };
+
   const addChapter = (chapterObj) => {
     chapterObj.id = ID();
 
