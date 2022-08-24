@@ -14,6 +14,10 @@ function Content() {
   const ID = function () {
     return "_" + Math.random().toString(36).substr(2, 9);
   };
+
+  const deleteAllContent = () => {
+    setContent([]);
+  };
   const convertContentToMarkdown = (contentArray) => {
     if (contentArray === []) return "";
     let contentMarkdown = "";

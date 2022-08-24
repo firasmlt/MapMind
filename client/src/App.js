@@ -1,12 +1,13 @@
-import Header from "./components/Header";
 import Content from "./components/Content";
-
+import NavBar from "./components/NavBar";
+import ToolBar from "./components/ToolBar";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <NavBar />
+      <ToolBar />
       <Content />
     </div>
   );

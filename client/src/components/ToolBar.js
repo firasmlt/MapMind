@@ -4,6 +4,7 @@ import Circle from "../images/Circle.svg";
 import Trash from "../images/Trash.svg";
 
 function ToolBar() {
+  const deleteAllHandler = () => {};
   return (
     <div className={styles.toolbar}>
       <input
@@ -24,6 +25,7 @@ function ToolBar() {
           src={Trash}
           width="38px"
           className={styles.trash}
+          onClick={deleteAllHandler}
         />
       </div>
     </div>
