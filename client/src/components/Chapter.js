@@ -55,7 +55,9 @@ function Chapter({
             type="text"
             value={chapter.name}
             onChange={chapterNameChange}
-            className={styles.chapterInput}
+            className={`${styles.chapterInput} ${
+              chapter.generated ? styles.generated : ""
+            }`}
           />
           <img
             alt="trash_icon"

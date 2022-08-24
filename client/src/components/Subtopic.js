@@ -37,7 +37,9 @@ function Subtopic({
           <input
             type="text"
             value={subtopic}
-            className={styles.subtopicInput}
+            className={`${styles.subtopicInput} ${
+              chapter.topics[topicIndex].generated ? styles.generated : ""
+            }`}
             onChange={changeSubtopicHandler}
             autoFocus
           />

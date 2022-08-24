@@ -4,7 +4,13 @@ import styles from "./Content.module.css";
 import Chapter from "./Chapter";
 
 function Content() {
-  const [content, setContent] = useState([]);
+  const [content, setContent] = useState([
+    {
+      id: "1",
+      name: "chapter1",
+      topics: [{ name: "topic1", subtopics: ["hello"] }],
+    },
+  ]);
   const ID = function () {
     return "_" + Math.random().toString(36).substr(2, 9);
   };
@@ -33,6 +39,7 @@ function Content() {
       if (!line.includes("###") && !line.includes("##") && line.includes("#")) {
         chapter = {
           id: ID(),
+          generated: true,
           name: line.replace("#", ""),
           topics: [],
         };
@@ -42,6 +49,7 @@ function Content() {
         chapter.topics.push({
           name: line.replace("##", ""),
           subtopics: [],
+          generated: true,
         });
       }
       if (line.includes("###")) {
@@ -69,7 +77,10 @@ function Content() {
   fdsafdsafsda`;
 
   useEffect(() => {
-    setContent(convertMarkdownToContent(markdownExampleText));
+    setContent((prev) => [
+      ...prev,
+      ...convertMarkdownToContent(markdownExampleText),
+    ]);
   }, []);
   console.log(convertMarkdownToContent(markdownExampleText));
   // console.log(convertContentToMarkdown(content));

@@ -54,7 +54,9 @@ function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
           <input
             type="text"
             value={topic.name}
-            className={styles.topicInput}
+            className={`${styles.topicInput} ${
+              topic.generated ? styles.generated : ""
+            }`}
             onChange={topicChangeHandler}
             onLoad={() => console.log("hello")}
             autoFocus

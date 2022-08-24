@@ -33,3 +33,8 @@
   left: -40px;
   cursor: pointer;
 }
+
+.generated {
+  border-color: green;
+  color: green;
+}
