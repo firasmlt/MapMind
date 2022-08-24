@@ -14,7 +14,8 @@ function App() {
   ]);
 
   const deleteAllHandler = (x) => {
-    setContent([]);
+    const isYes = prompt("are you sure Y/N");
+    if (isYes.toLocaleLowerCase() === "y") setContent([]);
   };
   return (
     <div className="App">
