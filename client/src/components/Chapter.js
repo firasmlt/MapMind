@@ -100,7 +100,7 @@ function Chapter({
         <input
           onChange={addChapterHandler}
           type="text"
-          placeholder="add a new Chapter"
+          placeholder="Add New"
           className={`${styles.chapterInput} ${styles.addChapterInput}`}
         />
       ) : (

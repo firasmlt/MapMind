@@ -5,7 +5,6 @@ import DeleteVerificationOverlay from "./components/UI/DeleteVerificationOverlay
 import "./App.css";
 import { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-
 function App() {
   const [context, setContext] = useState('')
   const [content, setContent] = useState([
@@ -39,7 +38,7 @@ function App() {
   };
 
   const convertMarkdownToContent = (markdownText) => {
-    const lines = markdownText.split("\n");
+    const lines = markdownText.trim().split("\n");
     console.log(lines)
     const newContent = [];
     let chapter = {};
@@ -74,15 +73,15 @@ function App() {
   const getData = async () => {
     console.log(promptContent)
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "XXXAPIKEYHEREXXX",
     });
     const openai = new OpenAIApi(configuration);
     const response = await openai.createCompletion({
       model: "text-davinci-002",
       prompt: promptContent,
       suffix: "",
-      temperature: 0.3,
-      max_tokens: 256,
+      temperature: 0.5,
+      max_tokens: 456,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
@@ -90,12 +89,11 @@ function App() {
     setContent(prev => [...prev, ...convertMarkdownToContent(`#${response.data.choices[0].text}`)])
   };
 
-
   return (
     <div className="App">
       <NavBar />
       <ToolBar deleteAllHandler={deleteAllHandler} setContext={setContext} getData={getData}/>
-      <Content content={content} setContent={setContent} context={context}/>
+      <Content content={content} setContent={setContent} context={context} ID={ID}/>
       {showOverlay ? (
         <DeleteVerificationOverlay
           setShowOverlay={setShowOverlay}

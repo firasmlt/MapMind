@@ -1,19 +1,7 @@
-import { useEffect, useState } from "react";
 import styles from "./Content.module.css";
-import { Configuration, OpenAIApi } from "openai";
 import Chapter from "./Chapter";
 
-function Content({ content, setContent, context }) {
-  console.log('context', context)
-  const ID = function () {
-    return "_" + Math.random().toString(36).substr(2, 9);
-  };
-  
-
-
-
-  // functions on chapters
-
+function Content({ content, setContent, context, ID }) {
   const addChapter = (chapterObj) => {
     chapterObj.id = ID();
 
