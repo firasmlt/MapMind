@@ -1,13 +1,13 @@
 import Content from "./components/Content";
 import NavBar from "./components/NavBar";
 import ToolBar from "./components/ToolBar";
-import Options from './components/Options'
+import Options from "./components/Options";
 import DeleteVerificationOverlay from "./components/UI/DeleteVerificationOverlay";
 import "./App.css";
 import { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 function App() {
-  const [context, setContext] = useState('')
+  const [context, setContext] = useState("");
   const [content, setContent] = useState([
     {
       id: "1",
@@ -15,7 +15,7 @@ function App() {
       topics: [{ name: "topic1", subtopics: ["hello"] }],
     },
   ]);
-  const [temp, setTemp] = useState(0)
+  const [temp, setTemp] = useState(0);
   const [showOverlay, setShowOverlay] = useState(false);
   const deleteAllHandler = (x) => {
     if (content.length !== 0) setShowOverlay(true);
@@ -41,7 +41,7 @@ function App() {
 
   const convertMarkdownToContent = (markdownText, generated = false) => {
     const lines = markdownText.trim().split("\n");
-    console.log(lines)
+    console.log(lines);
     const newContent = [];
     let chapter = {};
     lines.forEach((l, i) => {
@@ -49,7 +49,7 @@ function App() {
       if (!line.includes("###") && !line.includes("##") && line.includes("#")) {
         chapter = {
           id: ID(),
-          generated ,
+          generated,
           name: line.replace("#", ""),
           topics: [],
         };
@@ -71,11 +71,13 @@ function App() {
     return newContent;
   };
 
-  const promptContent = `we are creating a branching structure with multiple dimensions in the markdown format.\n    # = High-level \n    ## = Breakdown list of components that make up the high-level\n    ### = A further breakdown of the '##'\n    Context: ${context}\nContent:\n${convertContentToMarkdown(content)} \n# `;
+  const promptContent = `we are creating a branching structure with multiple dimensions in the markdown format.\n    # = High-level \n    ## = Breakdown list of components that make up the high-level\n    ### = A further breakdown of the '##'\n    Context: ${context}\nContent:\n${convertContentToMarkdown(
+    content
+  )} \n# `;
   const getData = async () => {
-    console.log(promptContent)
+    console.log(promptContent);
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "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",
     });
     const openai = new OpenAIApi(configuration);
     const response = await openai.createCompletion({
@@ -88,15 +90,27 @@ function App() {
       frequency_penalty: 0,
       presence_penalty: 0,
     });
-    setContent(prev => [...prev, ...convertMarkdownToContent(`#${response.data.choices[0].text}`, true)])
+    setContent((prev) => [
+      ...prev,
+      ...convertMarkdownToContent(`#${response.data.choices[0].text}`, true),
+    ]);
   };
 
   return (
     <div className="App">
       <NavBar />
-      <ToolBar deleteAllHandler={deleteAllHandler} setContext={setContext} getData={getData}/>
+      <ToolBar
+        deleteAllHandler={deleteAllHandler}
+        setContext={setContext}
+        getData={getData}
+      />
       <Options setTemp={setTemp} />
-      <Content content={content} setContent={setContent} context={context} ID={ID}/>
+      <Content
+        content={content}
+        setContent={setContent}
+        context={context}
+        ID={ID}
+      />
       {showOverlay ? (
         <DeleteVerificationOverlay
           setShowOverlay={setShowOverlay}

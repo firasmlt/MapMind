@@ -3,17 +3,17 @@ import Chart from "../images/Chart.svg";
 import Circle from "../images/Circle.svg";
 import Trash from "../images/Trash.svg";
 
-function ToolBar({ deleteAllHandler , setContext, getData}) {
+function ToolBar({ deleteAllHandler, setContext, getData }) {
   const deleteAll = () => {
     deleteAllHandler();
   };
   const inputChangeHandler = (e) => {
-    console.log(e.target.value)
-    setContext(e.target.value)
-  }
+    console.log(e.target.value);
+    setContext(e.target.value);
+  };
   const chartClickHandler = () => {
-    getData()
-  }
+    getData();
+  };
 
   return (
     <div className={styles.toolbar}>

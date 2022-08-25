@@ -102,9 +102,7 @@ function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
         <input
           type="text"
           placeholder="Add a new Topic"
-          className={`${styles.topicInput} ${styles.addTopicInput} ${
-            topic.generated ? styles.generated : ""
-          }`}
+          className={`${styles.topicInput} ${styles.addTopicInput}`}
           onChange={addTopicHandler}
         />
       ) : (
