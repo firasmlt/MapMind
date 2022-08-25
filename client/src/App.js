@@ -70,18 +70,19 @@ function App() {
     return newContent;
   };
 
-  const promptContent = `we are creating a branching structure with multiple dimensions in the markdown format.\n    # = High-level \n    ## = Breakdown list of components that make up the high-level\n    ### = A further breakdown of the '##' \n and stop at ###\n    Context: ${context}\n    \n    Content:\n    ${convertContentToMarkdown(content)} \n # `;
+  const promptContent = `we are creating a branching structure with multiple dimensions in the markdown format.\n    # = High-level \n    ## = Breakdown list of components that make up the high-level\n    ### = A further breakdown of the '##'\n    Context: ${context}\nContent:\n${convertContentToMarkdown(content)} \n# `;
   const getData = async () => {
+    console.log(promptContent)
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "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",
     });
     const openai = new OpenAIApi(configuration);
     const response = await openai.createCompletion({
       model: "text-davinci-002",
       prompt: promptContent,
       suffix: "",
-      temperature: 0.7,
-      max_tokens: 456,
+      temperature: 0.3,
+      max_tokens: 256,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
