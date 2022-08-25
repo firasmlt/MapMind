@@ -28,3 +28,6 @@
   border-color: #5cfff5;
   color: #33b6ab;
 }
+.generated::placeholder{
+  color: #33b6ab;
+}

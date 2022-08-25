@@ -58,7 +58,9 @@ function Subtopic({
         <input
           type="text"
           placeholder="Add a new SubTopic"
-          className={`${styles.subtopicInput} ${styles.addsubtopicInput}`}
+          className={`${styles.subtopicInput} ${styles.addsubtopicInput} ${
+            chapter.topics[topicIndex].generated ? styles.generated : ""
+          }`}
           onChange={addSubtopicHandler}
         />
       ) : (

@@ -1,6 +1,7 @@
 import Content from "./components/Content";
 import NavBar from "./components/NavBar";
 import ToolBar from "./components/ToolBar";
+import Options from './components/Options'
 import DeleteVerificationOverlay from "./components/UI/DeleteVerificationOverlay";
 import "./App.css";
 import { useState } from "react";
@@ -14,6 +15,7 @@ function App() {
       topics: [{ name: "topic1", subtopics: ["hello"] }],
     },
   ]);
+  const [temp, setTemp] = useState(0)
   const [showOverlay, setShowOverlay] = useState(false);
   const deleteAllHandler = (x) => {
     if (content.length !== 0) setShowOverlay(true);
@@ -37,7 +39,7 @@ function App() {
     return contentMarkdown;
   };
 
-  const convertMarkdownToContent = (markdownText) => {
+  const convertMarkdownToContent = (markdownText, generated = false) => {
     const lines = markdownText.trim().split("\n");
     console.log(lines)
     const newContent = [];
@@ -47,7 +49,7 @@ function App() {
       if (!line.includes("###") && !line.includes("##") && line.includes("#")) {
         chapter = {
           id: ID(),
-          generated: true,
+          generated ,
           name: line.replace("#", ""),
           topics: [],
         };
@@ -57,7 +59,7 @@ function App() {
         chapter.topics.push({
           name: line.replace("##", ""),
           subtopics: [],
-          generated: true,
+          generated,
         });
       }
       if (line.includes("###")) {
@@ -73,26 +75,27 @@ function App() {
   const getData = async () => {
     console.log(promptContent)
     const configuration = new Configuration({
-      apiKey: "XXXAPIKEYHEREXXX",
+      apiKey: "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",
     });
     const openai = new OpenAIApi(configuration);
     const response = await openai.createCompletion({
       model: "text-davinci-002",
       prompt: promptContent,
       suffix: "",
-      temperature: 0.5,
+      temperature: temp,
       max_tokens: 456,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
     });
-    setContent(prev => [...prev, ...convertMarkdownToContent(`#${response.data.choices[0].text}`)])
+    setContent(prev => [...prev, ...convertMarkdownToContent(`#${response.data.choices[0].text}`, true)])
   };
 
   return (
     <div className="App">
       <NavBar />
       <ToolBar deleteAllHandler={deleteAllHandler} setContext={setContext} getData={getData}/>
+      <Options setTemp={setTemp} />
       <Content content={content} setContent={setContent} context={context} ID={ID}/>
       {showOverlay ? (
         <DeleteVerificationOverlay
