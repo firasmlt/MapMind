@@ -131,7 +131,6 @@ function Content({ content, setContent }) {
       return prev.filter((chapter) => chapter.id !== id);
     });
   };
-  console.log(content);
 
   return (
     <div className={styles.content}>

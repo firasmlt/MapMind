@@ -24,10 +24,11 @@
 
 .tools {
   height: 38px;
-  width: 217px;
+  /* width: 217px; */
   display: flex;
   justify-content: space-between;
   align-items: space-between;
+  gap: 10px;
 }
 
 .tools > input {

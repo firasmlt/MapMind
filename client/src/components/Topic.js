@@ -58,7 +58,6 @@ function Topic({ topic, addTopicInput, chapter, updateChapter, topicIndex }) {
               topic.generated ? styles.generated : ""
             }`}
             onChange={topicChangeHandler}
-            onLoad={() => console.log("hello")}
             autoFocus
           />
           <img

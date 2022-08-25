@@ -20,8 +20,8 @@ function ToolBar({ deleteAllHandler }) {
           className={styles.chart}
           width="38px"
         />
-        <img alt="circle_icon" src={Circle} width="38px" />
-        <input type="checkbox" checked={false} />
+        {/* <img alt="circle_icon" src={Circle} width="38px" />
+        <input type="checkbox" checked={false} /> */}
         <img
           alt="trash_icon"
           src={Trash}

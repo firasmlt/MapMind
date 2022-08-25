@@ -15,7 +15,7 @@ function App() {
   ]);
   const [showOverlay, setShowOverlay] = useState(false);
   const deleteAllHandler = (x) => {
-    setShowOverlay(true);
+    if (content.length !== 0) setShowOverlay(true);
   };
   return (
     <div className="App">
