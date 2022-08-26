@@ -8,13 +8,7 @@ import { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 function App() {
   const [context, setContext] = useState("");
-  const [content, setContent] = useState([
-    {
-      id: "1",
-      name: "chapter1",
-      topics: [{ name: "topic1", subtopics: ["hello"] }],
-    },
-  ]);
+  const [content, setContent] = useState([]);
   const [temp, setTemp] = useState(0);
   const [showOverlay, setShowOverlay] = useState(false);
   const deleteAllHandler = (x) => {
@@ -73,11 +67,11 @@ function App() {
 
   const promptContent = `we are creating a branching structure with multiple dimensions in the markdown format.\n    # = High-level \n    ## = Breakdown list of components that make up the high-level\n    ### = A further breakdown of the '##'\n    Context: ${context}\nContent:\n${convertContentToMarkdown(
     content
-  )} \n# `;
+  )}# `;
   const getData = async () => {
     console.log(promptContent);
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "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",
     });
     const openai = new OpenAIApi(configuration);
     const response = await openai.createCompletion({
@@ -85,7 +79,7 @@ function App() {
       prompt: promptContent,
       suffix: "",
       temperature: temp,
-      max_tokens: 456,
+      max_tokens: 1056,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
