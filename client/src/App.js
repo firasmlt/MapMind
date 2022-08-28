@@ -35,7 +35,6 @@ function App() {
 
   const convertMarkdownToContent = (markdownText, generated = false) => {
     const lines = markdownText.trim().split("\n");
-    console.log(lines);
     const newContent = [];
     let chapter = {};
     lines.forEach((l, i) => {
@@ -74,6 +73,7 @@ function App() {
       apiKey: "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",
     });
     const openai = new OpenAIApi(configuration);
+    console.log("sending...");
     const response = await openai.createCompletion({
       model: "text-davinci-002",
       prompt: promptContent,
@@ -84,6 +84,7 @@ function App() {
       frequency_penalty: 0,
       presence_penalty: 0,
     });
+    console.log(response);
     setContent((prev) => [
       ...prev,
       ...convertMarkdownToContent(`#${response.data.choices[0].text}`, true),
