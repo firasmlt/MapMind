@@ -70,7 +70,7 @@ function App() {
   const getData = async () => {
     console.log(promptContent);
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "API",
     });
     const openai = new OpenAIApi(configuration);
     console.log("sending...");
